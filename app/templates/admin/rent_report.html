@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-background">
+<div class="container p-4">
+    <h2 class="text-center">Rent Status Report</h2>
+    <table class="table table-striped table-bordered mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th>Apartment ID</th>
+                <th>Resident Name</th>
+                <th>Monthly Rent</th>
+                <th>Total Rent Till Date</th>
+                <th>Total Payment Received</th>
+                <th>Outstanding Balance</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in report %}
+            <tr>
+                <td>{{ item.apartment_id }}</td>
+                <td>{{ item.resident_name }}</td>
+                <td>₹ {{ item.monthly_rent }}</td>
+                <td>₹ {{ item.amount_to_be_paid_till_date }}</td>
+                <td>₹ {{ item.total_payment_received }}</td>
+                <td class="{{ 'text-danger' if item.balance > 0 else 'text-success' }}">
+                    ₹ {{ item.balance }}
+                </td>
+                <td>{{ item.next_due_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-background">
+    <div class="container">
+        <div class="text-center mb-2 p-4">
+            <h1>Welcome, {{ current_user.username }}!</h1>
+        </div>
+        <div class="row justify-content-center">
+
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">My Lease</h5>
+                        <p class="card-text text-muted">View details of your lease agreement and status.</p>
+                        <img src="../static/images/lease_info.avif" class="card-img-top img-fluid card-img-custom" alt="Lease Graphic">
+                        <a href="{{ url_for('resident.view_lease_info') }}" class="btn btn-primary">View Lease</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Pay Rent</h5>
+                        <p class="card-text text-muted">Check rent dues and make payments securely online.</p>
+                        <img src="../static/images/payment.avif" class="card-img-top img-fluid card-img-custom" alt="Payment Graphic">
+                        <a href="{{ url_for('resident.make_payment') }}" class="btn btn-success">Pay Rent</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Grievances</h5>
+                        <p class="card-text text-muted">Submit and track complaints or maintenance requests.</p>
+                        <img src="../static/images/maintenance.avif" class="card-img-top img-fluid card-img-custom" alt="Maintenance Graphic">
+                        <a href="{{ url_for('resident.view_open_requests') }}" class="btn btn-warning">Requests</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

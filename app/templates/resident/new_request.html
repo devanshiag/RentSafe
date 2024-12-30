@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-background">
+<div class="container p-4">
+    <h2>Submit a Maintenance Request</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <div class="mb-3">
+            {{ form.severity.label(class="form-label") }}
+            {{ form.severity(class="form-select") }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.category.label(class="form-label") }}
+            {{ form.category(class="form-select") }}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.description.label(class="form-label") }}
+            {{ form.description(class="form-control") }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+</div>
+</div>
+{% endblock %}

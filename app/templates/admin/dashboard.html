@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-background">
+<div class="container p-4">
+    <h1 class="text-center mb-5">Welcome to Admin Dashboard!</h1>
+
+    <div class="row justify-content-center">
+        
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Maintenance Requests</h5>
+                    <p class="card-text">View and manage maintenance requests from residents.</p>
+                    <img src="../static/images/maintenance-admin.avif" class="card-img-top img-fluid card-img-custom" alt="Maintenance Graphic">
+                    <a href="{{ url_for('admin.admin_requests') }}" class="btn btn-primary">View Requests</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Rent Reports</h5>
+                    <p class="card-text">Access and review rent payment details and reports.</p>
+                    <img src="../static/images/report.avif" class="card-img-top img-fluid card-img-custom" alt="Maintenance Graphic">
+                    <a href="{{ url_for('admin.rent_report') }}" class="btn btn-success">View Reports</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}

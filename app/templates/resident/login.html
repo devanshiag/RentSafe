@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+        <div class="login-form-container">
+            <h2 class="welcome-text">Welcome Back!</h2>
+            <p class="tagline">Please log in to your account.</p>
+
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Log In</legend>
+
+                    <div class="form-group mb-2">
+                        {{ form.username.label(class="form-group-label") }}
+                        {% if form.username.errors %}
+                            {{ form.username(class="form-group form-group-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.username(class="form-group form-group-lg") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.password.label(class="form-group-label") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-group form-group-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="form-group form-group-lg") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-check-row mb-4 mt-4 d-flex justify-content-between align-items-center w-100">
+                        <div class="form-check">
+                            {{ form.remember(class="form-check-input") }}
+                            {{ form.remember.label(class="form-check-label") }}
+                        </div>
+                        <div>
+                            <a href="{{ url_for('resident.resident_reset_request') }}" class="forgot-password-link">Forgot Password?</a>
+                        </div>
+                    </div>
+                    
+                </fieldset>
+                <div class="form-group login-button">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </form>
+
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    New Resident? <a class="ml-2" href="{{ url_for('resident.register_resident') }}">Sign Up Now</a>
+                </small>
+            </div>
+        </div>
+
+        <div class="login-graphic-container">
+            <img src="{{ url_for('static', filename='images/user_login.avif') }}" alt="Login Graphic" class="login-graphic">
+        </div>
+    </div>
+
+{% endblock content %}

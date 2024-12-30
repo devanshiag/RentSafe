@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="dashboard-background">
+    <div class="container p-4">
+        <h2>Notifications</h2>
+        <ul class="list-group">
+            {% for notif in notifications.items %}
+                <li class="list-group-item {% if not notif.is_read %}fw-bold{% else %}text-muted{% endif %}">
+                    {{ notif.message }}
+                    <span class="float-end">{{ notif.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+                    {% if not notif.is_read %}
+                        <button class="btn btn-sm btn-primary mark-read-btn" data-id="{{ notif.id }}">Mark as Read</button>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <nav class="d-flex justify-content-center mt-4">
+        <ul class="pagination">
+            {% for page_num in notifications.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if page_num %}
+                    <li class="page-item {% if notifications.page == page_num %}active{% endif %}">
+                        <a class="page-link" href="{{ url_for('resident.notifications', page=page_num) }}">{{ page_num }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+
+</div>
+    
+    <script>
+        // Mark notification as read using AJAX
+        document.querySelectorAll('.mark-read-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const notifId = this.dataset.id;
+                fetch(`/notifications/${notifId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        // Update UI: Mark as read and remove the button
+                        this.closest('li').classList.add('text-muted');
+                        this.closest('li').classList.remove('fw-bold');
+                        this.remove();
+                        // Optionally update badge count
+                        const notifCount = document.getElementById('notif-count');
+                        notifCount.textContent = Math.max(0, parseInt(notifCount.textContent) - 1);
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+{% endblock content %}  

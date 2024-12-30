@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+        <!-- Left Section: Login Form -->
+        <div class="login-form-container">
+            <h2 class="welcome-text">Welcome Back!</h2>
+            <p class="tagline">Please enter your email id.</p>
+
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Reset Password</legend>
+
+                    <div class="form-group mb-2">
+                        {{ form.email.label(class="form-group-label") }}
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-group form-group-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-group form-group-lg") }}
+                        {% endif %}
+                    </div>
+                    
+                </fieldset>
+                <div class="form-group login-button mt-4">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </form>
+        </div>
+
+        <!-- Right Section: Small Graphic -->
+        <div class="login-graphic-container">
+            <img src="{{ url_for('static', filename='images/forgot-password.avif') }}" alt="Login Graphic" class="login-graphic">
+        </div>
+    </div>
+
+{% endblock content %}

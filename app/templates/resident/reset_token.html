@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-container">
+        <!-- Left Section: Login Form -->
+        <div class="login-form-container">
+            <h2 class="welcome-text">Welcome Back!</h2>
+            <p class="tagline">Please add a new password.</p>
+
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Reset Password</legend>
+
+                    <div class="form-group mb-2">
+                        {{ form.password.label(class="form-group-label") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-group form-group-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="form-group form-group-lg") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.confirm_password.label(class="form-group-label") }}
+                        {% if form.confirm_password.errors %}
+                            {{ form.confirm_password(class="form-group form-group-lg is-invalid input-length") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.confirm_password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.confirm_password(class="form-group form-group-lg") }}
+                        {% endif %}
+                    </div>
+                    
+                </fieldset>
+                <div class="form-group login-button mb-4 mt-4">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </form>
+        </div>
+
+        <!-- Right Section: Small Graphic -->
+        <div class="login-graphic-container">
+            <img src="{{ url_for('static', filename='images/reset-password.jpg') }}" alt="Login Graphic" class="login-graphic">
+        </div>
+    </div>
+
+{% endblock content %}

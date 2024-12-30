@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-background">
+    <div class="container d-flex justify-content-center p-4">
+        <div class="card shadow-lg p-4" style="max-width: 500px; border-radius: 12px;">
+            <!-- Card Header -->
+            <div class="card-header text-center bg-success text-white rounded-top">
+                <h3 class="mb-0">
+                    <i class="fas fa-credit-card me-2"></i> Make a Payment
+                </h3>
+            </div>
+            
+            <!-- Card Body -->
+            <div class="card-body">
+                <p><strong><i class="fas fa-building me-2"></i> Apartment:</strong> {{ lease.apartment_id }}</p>
+                <p><strong><i class="fas fa-wallet me-2"></i> Monthly Rent:</strong> ₹{{ lease.monthly_rent }}</p>
+                <p>
+                    <strong><i class="fas fa-calendar-day me-2"></i> Next Rent Due Date:</strong> 
+                    {{ lease.next_due_date.strftime("%B %d, %Y") }} <br>
+                    <small class="text-muted">Please make the payment by this date to avoid hassle.</small>
+                </p>
+                
+                <!-- Payment Form -->
+                <form method="POST" id="paymentForm">
+                    {{ form.hidden_tag() }}
+
+                    <div class="mb-3">
+                        {{ form.payment_method.label(class="form-label fw-bold small") }}
+                        {{ form.payment_method(class="form-select form-select-sm", id="paymentMethod") }}
+                    </div>
+
+                    <!-- Processing Fee Display -->
+                    <p id="processingFeeDisplay" class="text-muted"><strong>Processing Fee: ₹0.00</strong></p>
+
+                    <!-- Total Amount Display -->
+                    <p id="totalAmountDisplay" class="text-success"><strong>Total Amount to Pay: ₹{{ lease.monthly_rent }}</strong></p>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-outline-success btn-sm" id="payButton">
+                            <i class="fas fa-check-circle me-2"></i> Pay Now
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="card-footer text-center text-muted">
+                <small><i class="fas fa-info-circle me-2"></i> All transactions are secure and encrypted.</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="monthlyRent" type="application/json">{{ lease.monthly_rent | tojson }}</script>
+<script src="{{ url_for('static', filename='js/payment.js') }}"></script>
+{% endblock %}

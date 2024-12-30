@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container text-center mt-3">
+        <h1 class="display-4 mb-4">Welcome to RentSafe</h1>
+    
+        <div class="row justify-content-center">
+            <!-- Admin Login Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm">
+                    <img src="../static/images/admin_portal.avif" class="card-img-top" alt="Admin Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Admin Login</h5>
+                        <a href="{{ url_for('admin.admin_login') }}" class="btn btn-primary w-100">Login as Admin</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Resident Login Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm">
+                    <img src="../static/images/resident_user.jpg" class="card-img-top" alt="Resident Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Resident Login</h5>
+                        <a href="{{ url_for('resident.resident_login') }}" class="btn btn-primary w-100">Login as Resident</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

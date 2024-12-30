@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">RentSafe</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
+                <li class="nav-item">
+                    <a class="nav-link {% if current_page == 'resident.resident_dashboard' %}active{% endif %}" href="{{ url_for('resident.resident_dashboard') }}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if current_page == 'resident.view_lease_info' %}active{% endif %}" href="{{ url_for('resident.view_lease_info') }}">Lease Info</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if current_page == 'resident.requests' %}active{% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Maintenance Requests
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ url_for('resident.create_maintenance_request') }}">Raise new request</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('resident.view_open_requests') }}">Open requests</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ url_for('resident.closed_requests') }}">Closed requests</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if current_page == 'resident.make_payment' %}active{% endif %}" href="{{ url_for('resident.make_payment') }}">Pay Rent</a>
+                </li>
+                
+                
+                </ul>
+                
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Notifs <span class="badge bg-danger" id="notif-count">{{ unread_count or 0 }}</span>
+                        </a>
+    
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                                {% for notif in notifications %}
+                                <li>
+                                    <span class="dropdown-item {% if not notif.is_read %}fw-bold{% else %}text-muted{% endif %}">
+                                        {{ notif.message }}
+                                    </span>
+                                </li>
+                                {% endfor %}
+    
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center {% if current_page == 'resident.notifications' %}active{% endif %}" href="{{ url_for('resident.notifications') }}">View All Notifications</a></li>
+                        </ul>
+    
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-danger px-3 py-1" href="{{ url_for('resident.resident_logout') }}">Logout</a>
+                    </li>
+                </ul>
+            
+        </div>
+    </div>
+</nav>

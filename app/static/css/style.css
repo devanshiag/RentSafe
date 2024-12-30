@@ -1,0 +1,139 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f4f6f9; 
+    padding: 0 20px;
+}
+
+.login-form-container {
+    width: 30%;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.login-graphic-container {
+    padding: 20px;
+    margin-left: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%; 
+}
+
+.login-graphic {
+    max-width: 90%; 
+    height: auto; 
+    object-fit: contain; 
+}
+
+
+.welcome-text {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.btn-outline-info {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none !important;
+}
+
+input:focus, button:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.dashboard-background {
+    background-image: url("../images/bg1.jpeg");
+    background-size: contain;
+    background-position: center center;
+    height: 100vh; 
+}
+
+.forgot-password-link {
+    font-size: 14px; 
+    text-align: right; 
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.forgot-password-link:hover {
+    color: #0056b3;
+}
+
+.form-check-label {
+    font-size: 14px; 
+}
+
+.register-graphic {
+    max-width: 100%; 
+    height: auto; 
+}
+
+.card {
+    border: none;
+    background: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.card-img-custom {
+    max-height: 230px; 
+    object-fit: contain; 
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.fas {
+    margin-right: 8px;
+}
+
+.btn-outline-primary:hover {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.card-footer {
+    font-size: 14px;
+}
+
+.input-length {
+    width: 10px; 
+}
+
